@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- font icone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>Vue ToDoList</title>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <img src="img/logo.png" alt="logo Boolean">
+        </header>
+        <div class="flex">
+            <form class="new-task" @submit.prevent="addTodo">
+                <input class="item" type="text" placeholder="Inserisci i tasks giornalieri  🗒️" v-model="newTodo" required>
+                <button class="item" type="submit">Aggiungi  ✏️</button>
+            </form>
+        </div>
+        <div class="flex">
+            <div class="container">
+                <ul v-if="todoList.length > 0">
+                    <li class="task" v-for="(todo, index) in todoList" :class="{done: todo.done === true}">
+                        <div class="todo-text" @click="todo.done = !todo.done">{{ todo.text }}</div>
+                        <i class="fa-solid fa-xmark" @click="removeTodo(index)"></i>
+                    </li>
+                </ul>
+                <h4 v-else>Non sono presenti tasks  ☑️</h4>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
